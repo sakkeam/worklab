@@ -3,7 +3,7 @@
 	"[html]": {
 		"editor.defaultFormatter": "vscode.html-language-features"
 	},
-	"[json][jsonc][typescript][typescriptreact]": {
+	"[css][json][jsonc][typescript][typescriptreact]": {
 		"editor.defaultFormatter": "biomejs.biome"
 	}
 }
