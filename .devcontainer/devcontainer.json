@@ -1,5 +1,6 @@
 {
 	"image": "mcr.microsoft.com/devcontainers/universal:4",
+	"forwardPorts": [5173],
 	"features": {
 		"ghcr.io/devcontainers-extra/features/bun:1": {}
 	},
@@ -8,5 +9,6 @@
 			"extensions": ["biomejs.biome"]
 		}
 	},
-	"postCreateCommand": "bun install"
+	"postCreateCommand": "bun install",
+	"postStartCommand": "bun dev"
 }
