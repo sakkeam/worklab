@@ -1,7 +1,9 @@
 import { Canvas } from "@react-three/fiber";
 import { createXRStore, XR } from "@react-three/xr";
 
-const store = createXRStore();
+const store = createXRStore({
+	offerSession: "immersive-vr",
+});
 
 export default function App() {
 	return (
