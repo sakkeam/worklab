@@ -1,0 +1,10 @@
+{
+	"name": "worklab",
+	"version": "1.0.0",
+	"workspaces": [
+		"packages/*"
+	],
+	"devDependencies": {
+		"@biomejs/biome": "2.2.4"
+	}
+}
