@@ -17,6 +17,7 @@
         "@voltagent/libsql": "^1.0.7",
         "@voltagent/logger": "^1.0.2",
         "@voltagent/server-hono": "^1.0.15",
+        "@voltagent/serverless-hono": "^1.0.3",
         "ai": "^5.0.56",
         "zod": "3",
       },
@@ -579,6 +580,8 @@
     "@voltagent/server-core": ["@voltagent/server-core@1.0.14", "", { "dependencies": { "@modelcontextprotocol/sdk": "^1.12.1", "@voltagent/internal": "^0.0.11", "ai": "^5.0.12", "jsonwebtoken": "^9.0.2", "ws": "^8.18.1", "zod-from-json-schema": "^0.5.0", "zod-from-json-schema-v3": "npm:zod-from-json-schema@^0.0.5" }, "peerDependencies": { "@voltagent/core": "^1.0.0", "zod": "^3.25.0 || ^4.0.0" } }, "sha512-qjGg/cX8hpBdF9Zw1ZVm0S8E4E6EdRVUJdvAA0PlxTAQQ8S2eBAR6/5TXhG9YiFIt2hhu6bL7D6B7CvZz3gmpg=="],
 
     "@voltagent/server-hono": ["@voltagent/server-hono@1.0.15", "", { "dependencies": { "@hono/node-server": "^1.14.0", "@hono/swagger-ui": "^0.5.1", "@hono/zod-openapi": "^0.19.10", "@hono/zod-openapi-v4": "npm:@hono/zod-openapi@^1.1.0", "@voltagent/a2a-server": "^1.0.1", "@voltagent/core": "^1.1.22", "@voltagent/internal": "^0.0.11", "@voltagent/mcp-server": "^1.0.1", "@voltagent/server-core": "^1.0.14", "fetch-to-node": "^2.1.0", "hono": "^4.7.7" }, "peerDependencies": { "zod": "^3.25.0 || ^4.0.0" } }, "sha512-Tz2R3C6Qh7RGE2OqctF+U4DoM+KiKQDsxcgRn1QgM3fntaCg85VXxQY6WSme5mQ8T7w1jUpF+i0/SAdBW7SuAQ=="],
+
+    "@voltagent/serverless-hono": ["@voltagent/serverless-hono@1.0.3", "", { "dependencies": { "@voltagent/internal": "^0.0.11", "@voltagent/server-core": "^1.0.14", "hono": "^4.7.7" }, "peerDependencies": { "@voltagent/core": "^1.0.0" } }, "sha512-xFSnkoC3KuV82M3y6S5rF05j/k3ari4S0nCGpZq2qJZCZsqgTIP8gwTTlptseLcb5XSkW+2l4dkNa0bJ1x9+3g=="],
 
     "@webgpu/types": ["@webgpu/types@0.1.65", "", {}, "sha512-cYrHab4d6wuVvDW5tdsfI6/o6vcLMDe6w2Citd1oS51Xxu2ycLCnVo4fqwujfKWijrZMInTJIKcXxteoy21nVA=="],
 

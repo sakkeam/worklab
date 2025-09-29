@@ -1,8 +1,18 @@
 import { google } from "@ai-sdk/google";
-import { Agent, Memory, VoltAgent } from "@voltagent/core";
-import { LibSQLMemoryAdapter } from "@voltagent/libsql";
+import {
+	Agent,
+	InMemoryStorageAdapter,
+	Memory,
+	VoltAgent,
+} from "@voltagent/core";
 import { createPinoLogger } from "@voltagent/logger";
-import { honoServer } from "@voltagent/server-hono";
+import serverlessHono from "@voltagent/serverless-hono";
+
+type Env = {
+	GOOGLE_GENERATIVE_AI_API_KEY: string;
+	VOLTAGENT_PUBLIC_KEY?: string;
+	VOLTAGENT_SECRET_KEY?: string;
+};
 
 const logger = createPinoLogger({
 	name: "worklab-agent",
@@ -15,14 +25,16 @@ const agent = new Agent({
 		"A helpful assistant that answers questions without using tools",
 	model: google("gemini-2.5-flash-lite"),
 	memory: new Memory({
-		storage: new LibSQLMemoryAdapter({
-			url: "file:./.voltagent/memory.db",
+		storage: new InMemoryStorageAdapter({
+			storageLimit: 50,
 		}),
 	}),
 });
 
-new VoltAgent({
+const voltAgent = new VoltAgent({
 	agents: { agent },
-	server: honoServer(),
+	serverless: serverlessHono(),
 	logger,
 });
+
+export default voltAgent.serverless().toCloudflareWorker();
