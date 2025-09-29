@@ -7,7 +7,9 @@
 	"scripts": {
 		"dev": "concurrently 'bun dev:frontend' 'bun dev:backend'",
 		"dev:frontend": "bun --cwd=packages/frontend dev",
-		"dev:backend": "bun --cwd=packages/backend dev"
+		"dev:backend": "bun --cwd=packages/backend dev",
+		"build:frontend": "bun --cwd=packages/frontend run build",
+		"deploy:frontend": "bun --cwd=packages/frontend deploy"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.2.4",
