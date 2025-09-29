@@ -63,3 +63,30 @@ func (m *HelloDagger) FrontendDeploy(
 		WithSecretVariable("CLOUDFLARE_ACCOUNT_ID", cloudflareAccountID).
 		WithExec([]string{"sh", "-c", "bunx wrangler@latest pages deploy --project-name " + projectName + " dist"})
 }
+
+func (m *HelloDagger) BackendBuild(
+	// +ignore=["**/node_modules"]
+	directoryArg *dagger.Directory,
+) *dagger.Container {
+	return dag.Container().
+		From("oven/bun:1").
+		WithMountedDirectory("/mnt", directoryArg).
+		WithWorkdir("/mnt").
+		WithExec([]string{"bun", "install"}).
+		WithExec([]string{"bun", "build:backend"})
+}
+
+func (m *HelloDagger) BackendDeploy(
+	// +ignore=["**/node_modules"]
+	directoryArg *dagger.Directory,
+	cloudflareAPIToken *dagger.Secret,
+	cloudflareAccountID *dagger.Secret,
+) *dagger.Container {
+	return dag.Container().
+		From("oven/bun:1").
+		WithMountedDirectory("/mnt", m.BackendBuild(directoryArg).Directory("packages/backend")).
+		WithWorkdir("/mnt").
+		WithSecretVariable("CLOUDFLARE_API_TOKEN", cloudflareAPIToken).
+		WithSecretVariable("CLOUDFLARE_ACCOUNT_ID", cloudflareAccountID).
+		WithExec([]string{"sh", "-c", "bunx wrangler@latest deploy dist/index.js"})
+}
