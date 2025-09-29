@@ -1,12 +1,27 @@
 {
-  "name": "backend",
-  "module": "index.ts",
-  "type": "module",
-  "private": true,
-  "devDependencies": {
-    "@types/bun": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "^5"
-  }
+	"name": "backend",
+	"module": "index.ts",
+	"type": "module",
+	"private": true,
+	"scripts": {
+		"dev": "bun run --watch index.ts",
+		"build": "bun run build.ts",
+		"start": "bun run dist/index.js"
+	},
+	"devDependencies": {
+		"@types/bun": "latest",
+		"@voltagent/cli": "^0.1.11"
+	},
+	"peerDependencies": {
+		"typescript": "^5"
+	},
+	"dependencies": {
+		"@ai-sdk/google": "^2",
+		"@voltagent/core": "^1.1.23",
+		"@voltagent/libsql": "^1.0.7",
+		"@voltagent/logger": "^1.0.2",
+		"@voltagent/server-hono": "^1.0.15",
+		"ai": "^5.0.56",
+		"zod": "3"
+	}
 }

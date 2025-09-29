@@ -5,9 +5,12 @@
 		"packages/*"
 	],
 	"scripts": {
-		"dev": "bun --cwd=packages/frontend dev"
+		"dev": "concurrently 'bun dev:frontend' 'bun dev:backend'",
+		"dev:frontend": "bun --cwd=packages/frontend dev",
+		"dev:backend": "bun --cwd=packages/backend dev"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "2.2.4"
+		"@biomejs/biome": "2.2.4",
+		"concurrently": "^9.2.1"
 	}
 }

@@ -6,6 +6,13 @@ import { defineConfig } from "vite";
 export default defineConfig({
 	plugins: [react(), tailwindcss(), basicSsl()],
 	server: {
+		proxy: {
+			"/api": {
+				target: "http://localhost:3141",
+				changeOrigin: true,
+				rewrite: (path) => path.replace(/^\/api/, ""),
+			},
+		},
 		host: "0.0.0.0",
 	},
 });
