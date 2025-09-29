@@ -9,7 +9,9 @@
 		"dev:frontend": "bun --cwd=packages/frontend dev",
 		"dev:backend": "bun --cwd=packages/backend dev",
 		"build:frontend": "bun --cwd=packages/frontend run build",
-		"deploy:frontend": "bun --cwd=packages/frontend deploy"
+		"build:backend": "bun --cwd=packages/backend run build",
+		"deploy:frontend": "bun --cwd=packages/frontend deploy",
+		"deploy:backend": "bun --cwd=packages/backend deploy"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.2.4",
