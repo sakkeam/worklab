@@ -35,3 +35,31 @@ func (m *HelloDagger) GrepDir(ctx context.Context, directoryArg *dagger.Director
 		WithExec([]string{"grep", "-R", pattern, "."}).
 		Stdout(ctx)
 }
+
+func (m *HelloDagger) FrontendBuild(
+	// +ignore=["**/node_modules"]
+	directoryArg *dagger.Directory,
+) *dagger.Container {
+	return dag.Container().
+		From("oven/bun:1").
+		WithMountedDirectory("/mnt", directoryArg).
+		WithWorkdir("/mnt").
+		WithExec([]string{"bun", "install"}).
+		WithExec([]string{"bun", "build:frontend"})
+}
+
+func (m *HelloDagger) FrontendDeploy(
+	// +ignore=["**/node_modules"]
+	directoryArg *dagger.Directory,
+	cloudflareAPIToken *dagger.Secret,
+	cloudflareAccountID *dagger.Secret,
+	projectName string,
+) *dagger.Container {
+	return dag.Container().
+		From("oven/bun:1").
+		WithMountedDirectory("/mnt", m.FrontendBuild(directoryArg).Directory("packages/frontend")).
+		WithWorkdir("/mnt").
+		WithSecretVariable("CLOUDFLARE_API_TOKEN", cloudflareAPIToken).
+		WithSecretVariable("CLOUDFLARE_ACCOUNT_ID", cloudflareAccountID).
+		WithExec([]string{"sh", "-c", "bunx wrangler@latest pages deploy --project-name " + projectName + " dist"})
+}

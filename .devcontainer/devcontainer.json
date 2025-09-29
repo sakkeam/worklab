@@ -6,9 +6,14 @@
 	},
 	"customizations": {
 		"vscode": {
-			"extensions": ["biomejs.biome"]
+			"extensions": [
+				"biomejs.biome",
+				"golang.go",
+				"GitHub.vscode-github-actions",
+				"redhat.vscode-yaml"
+			]
 		}
 	},
-	"postCreateCommand": "bun install",
+	"postCreateCommand": "curl -fsSL https://dl.dagger.io/dagger/install.sh | BIN_DIR=$HOME/.local/bin sh && bun install",
 	"postStartCommand": "bun dev"
 }

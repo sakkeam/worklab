@@ -5,5 +5,11 @@
 	},
 	"[css][json][jsonc][typescript][typescriptreact]": {
 		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[go]": {
+		"editor.defaultFormatter": "golang.go"
+	},
+	"[yaml]": {
+		"editor.defaultFormatter": "redhat.vscode-yaml"
 	}
 }
